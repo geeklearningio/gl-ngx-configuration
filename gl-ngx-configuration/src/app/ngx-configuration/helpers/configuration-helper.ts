@@ -1,8 +1,3 @@
-# gl-ngx-configuration
-An angular library to load and merge configurations before everything else
-
-
-```
 import { ConfigurationProvider } from './../providers/configuration-provider';
 
 export class Configuration<TConfiguration> {
@@ -30,5 +25,3 @@ export function ConfigurationFactory(config: ConfigurationProvider<any>) {
         .then(api => config.addConfig({ apiUri: `${api.protocol}://${api.hostName}${api.port ? `:${api.port}` : ''}` }))
         .then(() => config.loadUrl(`${config.getConfig().apiUri}/api/configuration/frontend`));
 }
-
-```
