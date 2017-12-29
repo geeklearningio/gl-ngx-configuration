@@ -1,34 +1,27 @@
-# gl-ngx-configuration
-An angular library to load and merge configurations before everything else
+# GlNgxConfiguration
 
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
 
-```
-import { ConfigurationProvider } from './../providers/configuration-provider';
+## Development server
 
-export class Configuration<TConfiguration> {
-    constructor(private provider: ConfigurationProvider<TConfiguration>) { }
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-    public value(): TConfiguration {
-        return this.provider.getConfig();
-    }
-}
+## Code scaffolding
 
-export function CreateConfiguration<TConfiguration>(provider: ConfigurationProvider<TConfiguration>) {
-    return new Configuration<TConfiguration>(provider);
-}
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-export function ConfigurationFactory(config: ConfigurationProvider<any>) {
-    config.addConfig({
-        api: {
-            hostName: document.location.hostname,
-            port: document.location.port,
-            protocol: document.location.protocol.replace(':', '')
-        }
-    });
-    return () => config.load()
-        .then(() => config.getConfig().api)
-        .then(api => config.addConfig({ apiUri: `${api.protocol}://${api.hostName}${api.port ? `:${api.port}` : ''}` }))
-        .then(() => config.loadUrl(`${config.getConfig().apiUri}/api/configuration/frontend`));
-}
+## Build
 
-```
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

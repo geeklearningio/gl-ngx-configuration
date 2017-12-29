@@ -1,0 +1,13 @@
+{
+  "name": "gl-ngx-configuration",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@angular/common": "^5.0.0",
+    "@angular/core": "^5.0.0",
+    "lodash": "^4.0.0"
+  },
+  "devDependencies": {
+  }
+}

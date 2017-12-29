@@ -1,16 +1,20 @@
+import { ConfigurationProvider } from './configuration-provider';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CONFIGURATION_FACTORY, CreateConfiguration, Configuration } from './configuration';
 
-import { ConfigurationProvider } from './providers/configuration-provider';
-import { Configuration, ConfigurationFactory, CreateConfiguration } from './helpers/configuration-helper';
+function InternalConfigurationFactory(config: ConfigurationProvider<any>, factory: ((provider: ConfigurationProvider<any>) => PromiseLike<any>)[]) {
+  return () => factory[0](config);
+}
+
 
 @NgModule({
   providers: [
     ConfigurationProvider,
     {
       provide: APP_INITIALIZER,
-      useFactory: ConfigurationFactory,
-      deps: [ConfigurationProvider],
+      useFactory: InternalConfigurationFactory,
+      deps: [ConfigurationProvider, CONFIGURATION_FACTORY],
       multi: true
     },
     {

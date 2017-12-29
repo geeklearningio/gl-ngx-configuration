@@ -1,0 +1,9 @@
+{
+    "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+    "src": "src/app/ngx-configuration",
+    "dest": "dist/ngx-configuration",
+    "workingDirectory": ".ng_build",
+    "lib": {
+        "entryFile": "public-api.ts"
+    }
+}
