@@ -6,7 +6,6 @@ import { CONFIGURATION_FACTORY, CreateConfiguration, Configuration } from './con
 function InternalConfigurationFactory(
   config: ConfigurationProvider<any>,
   factory: ((provider: ConfigurationProvider<any>) => PromiseLike<any>)[]) {
-  console.log('factories', factory);
   return () => factory[0](config);
 }
 
