@@ -9,5 +9,17 @@
     "lodash": "^4.0.0"
   },
   "devDependencies": {
+  },
+  "description": "An angular module to load and merge configurations before everything else.",
+  "keywords": [
+      "angular",
+      "ngx",
+      "configuration"
+  ],
+  "homepage": "https://github.com/geeklearningio/gl-ngx-configuration",
+  "bugs": "https://github.com/geeklearningio/gl-ngx-configuration/issues",
+  "author": {
+      "name": "Geek Learning",
+      "url": "http://geeklearning.io/"
   }
 }
