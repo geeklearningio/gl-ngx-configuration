@@ -114,6 +114,46 @@ export class HomePage {
 }
 ```
 
+## API
+
+```
+export class Configuration<TConfiguration> {
+    /**
+     * Retrieves the current configuration value.
+     */
+    public value(): TConfiguration;
+}
+
+export class ConfigurationProvider<T> {
+  
+  /**
+   * Loads a `configuration.json` file from the application root.
+   * @param environment if environment is provided and a deployUrl settings is set it will use it.
+   */
+  loadDefault(environment?: any): Promise<boolean>;
+
+  /**
+   * Loads a json file from a specified Url.
+   * @param url url to download the configuration from
+   */
+  loadUrl(url: string): Promise<boolean>;
+
+  /**
+   * Merges an object with the current configuration
+   * @param obj obj or promise to merge with the current configuration
+   */
+  public merge(obj: Partial<T> | Promise<Partial<T>>): Promise<boolean>;
+
+  /**
+   * Retrieves the current configuration value.
+   * @returns the current merged configuration value
+   */
+  public getConfig(): T {
+    return this.mergedConfiguration;
+  }
+}
+```
+
 ## How it works
 This modules uses an `APP_INITIALIZERS` to load the `ConfigurationProvider` and execute the `CONFIGURATION_FACTORY` you provides. It basically tells Angular to wait for this provider to load the configuration json file before executing anything else.
 

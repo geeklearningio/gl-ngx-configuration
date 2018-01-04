@@ -4,6 +4,9 @@ import { InjectionToken } from '@angular/core';
 export class Configuration<TConfiguration> {
     constructor(private provider: ConfigurationProvider<TConfiguration>) { }
 
+    /**
+     * Retrieves the current configuration value.
+     */
     public value(): TConfiguration {
         return this.provider.getConfig();
     }

@@ -6,6 +6,10 @@ export class ConfigurationProvider<T> {
 
   private mergedConfiguration: T = <T>{};
 
+  /**
+   * Loads a `configuration.json` file from the application root.
+   * @param environment if environment is provided and a deployUrl settings is set it will use it.
+   */
   loadDefault(environment?: any): Promise<boolean> {
     const url = environment && environment.deployUrl ? environment.deployUrl + 'configuration.json' : 'configuration.json';
 
@@ -28,6 +32,10 @@ export class ConfigurationProvider<T> {
     });
   }
 
+  /**
+   * Loads a json file from a specified Url.
+   * @param url url to download the configuration from
+   */
   loadUrl(url: string): Promise<boolean> {
     return new Promise((resolve, reject) => {
       const xobj = new XMLHttpRequest();
@@ -52,6 +60,10 @@ export class ConfigurationProvider<T> {
     this.mergedConfiguration = <T>_.merge(this.mergedConfiguration, obj);
   }
 
+  /**
+   * Merges an object with the current configuration
+   * @param obj obj or promise to merge with the current configuration
+   */
   public merge(obj: Partial<T> | Promise<Partial<T>>): Promise<boolean> {
     const promisyfied = Promise.resolve(obj);
     return promisyfied.then(result => {
@@ -64,7 +76,11 @@ export class ConfigurationProvider<T> {
     });
   }
 
-  public getConfig() {
+  /**
+   * Retrieves the current configuration value.
+   * @returns the current merged configuration value
+   */
+  public getConfig(): T {
     return this.mergedConfiguration;
   }
 }
