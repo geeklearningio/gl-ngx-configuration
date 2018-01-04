@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { EnvironmentConfigurationModule } from './ngx-configuration/environment-configuration.module';
-import { CONFIGURATION_FACTORY, ConfigurationProvider } from './ngx-configuration/public-api';
+import { CONFIGURATION_FACTORY, ConfigurationProvider, ConfigurationModule } from './ngx-configuration/public-api';
 
 
 export function ConfigureFactory() {
@@ -26,7 +25,7 @@ export function ConfigureFactory() {
     provide: CONFIGURATION_FACTORY,
     useFactory: ConfigureFactory,
     multi: true
-  },],
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

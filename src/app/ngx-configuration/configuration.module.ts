@@ -3,7 +3,10 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA, APP_INITIALIZER } from '@angular/core
 import { BrowserModule } from '@angular/platform-browser';
 import { CONFIGURATION_FACTORY, CreateConfiguration, Configuration } from './configuration';
 
-function InternalConfigurationFactory(config: ConfigurationProvider<any>, factory: ((provider: ConfigurationProvider<any>) => PromiseLike<any>)[]) {
+function InternalConfigurationFactory(
+  config: ConfigurationProvider<any>,
+  factory: ((provider: ConfigurationProvider<any>) => PromiseLike<any>)[]) {
+  console.log('factories', factory);
   return () => factory[0](config);
 }
 
@@ -25,4 +28,4 @@ function InternalConfigurationFactory(config: ConfigurationProvider<any>, factor
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class EnvironmentConfigurationModule { }
+export class ConfigurationModule { }

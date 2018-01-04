@@ -16,7 +16,7 @@ export class ConfigurationProvider<T> {
             xobj.onreadystatechange = () => {
                 if (xobj.readyState === 4) {
                     if ((xobj.status === 200 || xobj.status === 0) && xobj.responseText) {
-                        this.merge(<T>JSON.parse(xobj.responseText));
+                        this._merge(<T>JSON.parse(xobj.responseText));
                         resolve(true);
                     } else {
                         console.log('Could not load environment configuration file');
@@ -36,7 +36,7 @@ export class ConfigurationProvider<T> {
             xobj.onreadystatechange = () => {
                 if (xobj.readyState === 4) {
                     if ((xobj.status === 200 || xobj.status === 0) && xobj.responseText) {
-                        this.merge(<T>JSON.parse(xobj.responseText));
+                        this._merge(<T>JSON.parse(xobj.responseText));
                         resolve(true);
                     } else {
                         console.log('Could not load environment configuration file');
@@ -48,13 +48,16 @@ export class ConfigurationProvider<T> {
         });
     }
 
+    private _merge(obj: Partial<T>) {
+      console.log('merging:', obj);
+      this.mergedConfiguration = <T>_.merge(this.mergedConfiguration, obj);
+    }
+
     public merge(obj: Partial<T> | Promise<Partial<T>>): Promise<boolean> {
-        console.log(obj);
-        var promisyfied = Promise.resolve(obj);
-        console.log(promisyfied);
+        const promisyfied = Promise.resolve(obj);
         return promisyfied.then(result => {
             if (result) {
-                this.mergedConfiguration = <T>_.merge(this.mergedConfiguration, obj);
+                this._merge(result);
                 return true;
             }
             console.log('Object was undefined and could not be merged to the configuration');

@@ -1,5 +1,5 @@
-import { ConfigurationProvider } from "./configuration-provider";
-import { InjectionToken } from "@angular/core";
+import { ConfigurationProvider } from './configuration-provider';
+import { InjectionToken } from '@angular/core';
 
 export class Configuration<TConfiguration> {
     constructor(private provider: ConfigurationProvider<TConfiguration>) { }
