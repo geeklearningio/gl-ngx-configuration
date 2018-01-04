@@ -1,27 +1,122 @@
-# GlNgxConfiguration
+# Introduction
+This is an environment configuration package for Angular 5+ (we might support Angular 4 in the near future).
+It allows you to dynamically load configuration from various sources as hosted json configuration files. 
+This json will be loaded before everything else in your App.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
+# Usecases
+For example, in a continuous integration system, we often need different API endpoints between developpment, preproduction, production and so on.
+This system will allow you to change this kind of parameter in the configuration file without having to recompile your Typescript code all over.
 
-## Development server
+In other scenario, you might want some configuration settings to be dynamically provided by an API.
+This library will cater for that as well.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# Example
+To make development and testing easy, this repository is an angular CLI demonstration app.
 
-## Code scaffolding
+The actual module sources are contained in the path `src/app/ngx-configuration`.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# How to use it
 
-## Build
+## Install the module
+Install it with npm:
+```
+npm install gl-ngx-configuration --save
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Install it with yarn:
+```
+yarn add gl-ngx-configuration
+```
 
-## Running unit tests
+## Create or copy your configuration json file
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Simple way
+Add a `configuration.json` file in your src folder containing your env configuration variables.
+There is no required key needed, it's your configuration. It will surely contain your api url, your Google Analytics ID and more...
+To copy the right configuration for the right environment, you will need a copy executable, as explained in the next section.
 
-## Running end-to-end tests
+### Automatic way (use a copy executable)
+I made a simpe executable that will copy the right configuration file for a specified environment:
+`copy-env-config.js` which is available [here](https://github.com/geeklearningio/gl-ngx-configuration/blob/master/copy-env-config.js).
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Here how to use it:
+```
+node copy-env-config.js --env YOURENV
+```
+This will copy the file `src/configuration/YOURENV.json` to `src/configuration.json`
 
-## Further help
+### Even more automatic
+Just run this command before your ionic:serve or ionic:build command to specify the right environment configuration to copy.
+For example, to build you app in prod and serve in dev, just update your `package.json` scripts like that:
+```
+"ionic:build": "node copy-env-config.js --env prod | ionic-app-scripts build",
+"ionic:serve": "node copy-env-config.js --env dev | ionic-app-scripts serve"
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Use the module in your Angular app
+
+```typescript
+import { NgModule } from '@angular/core';
+import { environment } from 'environments/environment';
+
+// Import the module
+import {  CONFIGURATION_FACTORY, ConfigurationProvider, ConfigurationModule } from 'gl-ngx-configuration';
+
+export function configurationFactory() {
+  return (config: ConfigurationProvider<any>) => {
+    return config.loadDefault(environment); // you can chain several calls
+  };
+}
+
+@NgModule({
+  declarations: [
+    //...
+  ],
+  imports: [
+    ConfigurationModule // Import the module here
+  ],
+  entryComponents: [
+    //...
+  ],
+  providers: [{
+      provide: CONFIGURATION_FACTORY,
+      useFactory: configurationFactory,
+      multi: true
+    }]
+})
+export class AppModule {}
+```
+
+## Get the configuration in your app
+
+```typescript
+import { Component } from '@angular/core';
+
+// Import the module
+import {Configuration} from "gl-ngx-configuration";
+
+// Import your configuration typings
+// You can specify a typing for your configuration to get nice and neat autocompletion
+import {ITestAppConfiguration} from "../../env-configuration/ITestAppConfiguration";
+
+@Component({
+  selector: 'page-home',
+  templateUrl: 'home.html'
+})
+export class HomePage {
+
+  // inject the EnvConfigurationProvider and specify the configuration typings
+  constructor(private envConfiguration: Configuration<ITestAppEnvConfiguration>) {
+    let config: ITestAppEnvConfiguration = envConfiguration.value();
+    console.log(config); // And here you have your nice configuration
+  }
+
+}
+```
+
+## How it works
+This modules uses an `APP_INITIALIZERS` to load the `ConfigurationProvider` and execute the `CONFIGURATION_FACTORY` you provides. It basically tells Angular to wait for this provider to load the configuration json file before executing anything else.
+
+So for example, your API service will have the right endpoint even in its constructor.
+
+To learn more about this specific loading, you can see this [discussion](https://github.com/angular/angular/issues/9047#issuecomment-224075188) and this [GIST file](https://gist.github.com/fernandohu/122e88c3bcd210bbe41c608c36306db9).
