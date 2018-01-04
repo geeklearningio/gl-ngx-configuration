@@ -2,7 +2,7 @@
   "name": "gl-ngx-configuration",
   "version": "0.0.0",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "peerDependencies": {
     "@angular/common": "^5.0.0",
     "@angular/core": "^5.0.0",
