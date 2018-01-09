@@ -3,7 +3,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA, APP_INITIALIZER } from '@angular/core
 import { BrowserModule } from '@angular/platform-browser';
 import { CONFIGURATION_FACTORY, CreateConfiguration, Configuration } from './configuration';
 
-function InternalConfigurationFactory(
+export function InternalConfigurationFactory(
   config: ConfigurationProvider<any>,
   factory: ((provider: ConfigurationProvider<any>) => PromiseLike<any>)[]) {
   return () => factory[0](config);
