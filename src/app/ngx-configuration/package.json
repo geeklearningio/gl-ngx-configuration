@@ -19,7 +19,18 @@
   "homepage": "https://github.com/geeklearningio/gl-ngx-configuration",
   "bugs": "https://github.com/geeklearningio/gl-ngx-configuration/issues",
   "author": {
-      "name": "Geek Learning",
-      "url": "http://geeklearning.io/"
-  }
+    "name": "Geek Learning",
+    "url": "http://geeklearning.io/"
+  },
+  "repository": "geeklearningio/gl-ngx-configuration",
+  "contributors": [
+    {
+      "name": "Cyprien Autexier",
+      "url": "http://geeklearning.io/author/cyprien/"
+    },
+    {
+      "name": "Michel Vidailhet",
+      "url": "http://geeklearning.io/author/michel/"
+    }
+  ]
 }

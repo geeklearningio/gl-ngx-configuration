@@ -2,6 +2,23 @@
   "name": "gl-ngx-configuration",
   "version": "0.0.0",
   "license": "MIT",
+  "homepage": "https://github.com/geeklearningio/gl-ngx-configuration",
+  "bugs": "https://github.com/geeklearningio/gl-ngx-configuration/issues",
+  "author": {
+    "name": "Geek Learning",
+    "url": "http://geeklearning.io/"
+  },
+  "repository": "geeklearningio/gl-ngx-configuration",
+  "contributors": [
+    {
+      "name": "Cyprien Autexier",
+      "url": "http://geeklearning.io/author/cyprien/"
+    },
+    {
+      "name": "Michel Vidailhet",
+      "url": "http://geeklearning.io/author/michel/"
+    }
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
