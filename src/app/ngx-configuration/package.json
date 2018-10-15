@@ -1,0 +1,36 @@
+{
+  "name": "gl-ngx-configuration",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": false,
+  "peerDependencies": {
+    "@angular/common": "^5.0.0",
+    "@angular/core": "^5.0.0",
+    "lodash": "^4.0.0"
+  },
+  "devDependencies": {
+  },
+  "description": "An angular module to load and merge configurations before everything else.",
+  "keywords": [
+      "angular",
+      "ngx",
+      "configuration"
+  ],
+  "homepage": "https://github.com/geeklearningio/gl-ngx-configuration",
+  "bugs": "https://github.com/geeklearningio/gl-ngx-configuration/issues",
+  "author": {
+    "name": "Geek Learning",
+    "url": "http://geeklearning.io/"
+  },
+  "repository": "geeklearningio/gl-ngx-configuration",
+  "contributors": [
+    {
+      "name": "Cyprien Autexier",
+      "url": "http://geeklearning.io/author/cyprien/"
+    },
+    {
+      "name": "Michel Vidailhet",
+      "url": "http://geeklearning.io/author/michel/"
+    }
+  ]
+}
