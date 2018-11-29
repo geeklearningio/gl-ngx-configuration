@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
+
 import { Configuration } from './ngx-configuration/public-api';
 
-
-export interface MyConfiguration{
+export interface MyConfiguration {
   settingA: string;
   settingB: string;
 }
-
 
 @Component({
   selector: 'app-root',
@@ -17,7 +16,7 @@ export class AppComponent {
   title = 'app';
   config: MyConfiguration;
 
-  constructor(configuration: Configuration<MyConfiguration>){
+  constructor(configuration: Configuration<MyConfiguration>) {
     this.config = configuration.value();
   }
 }
