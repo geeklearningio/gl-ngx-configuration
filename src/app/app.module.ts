@@ -2,7 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { CONFIGURATION_FACTORY, ConfigurationModule, ConfigurationProvider } from './ngx-configuration/public-api';
+import {
+  ConfigurationProvider,
+  ConfigurationModule,
+  CONFIGURATION_FACTORY
+} from 'gl-ngx-configuration';
 
 export function ConfigureFactory() {
   return (config: ConfigurationProvider<any>) => {

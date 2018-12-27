@@ -16,6 +16,14 @@
       "dom"
     ],
     "module": "es2015",
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "paths": {
+      "gl-ngx-configuration": [
+        "dist/gl-ngx-configuration"
+      ],
+      "gl-ngx-configuration/*": [
+        "dist/gl-ngx-configuration/*"
+      ]
+    }
   }
 }

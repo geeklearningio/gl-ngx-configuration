@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-
-import { Configuration } from './ngx-configuration/public-api';
+import { Configuration } from 'gl-ngx-configuration';
 
 export interface MyConfiguration {
   settingA: string;

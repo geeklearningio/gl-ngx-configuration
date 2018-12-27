@@ -4,17 +4,15 @@
   "license": "MIT",
   "private": false,
   "peerDependencies": {
-    "@angular/common": "^6.1.0",
-    "@angular/core": "^6.1.0",
+    "@angular/common": "^6.1.0 || ^7.0.0",
+    "@angular/core": "^6.1.0 || ^7.0.0",
     "lodash": "^4.17.0"
-  },
-  "devDependencies": {
   },
   "description": "An angular module to load and merge configurations before everything else.",
   "keywords": [
-      "angular",
-      "ngx",
-      "configuration"
+    "angular",
+    "ngx",
+    "configuration"
   ],
   "homepage": "https://github.com/geeklearningio/gl-ngx-configuration",
   "bugs": "https://github.com/geeklearningio/gl-ngx-configuration/issues",
