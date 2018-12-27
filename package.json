@@ -23,10 +23,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:lib": "ng build gl-ngx-configuration",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "package": "ng-packagr",
     "link": "run-s package link:core",
     "link:core": "cd dist\\gl-ngx-configuration && yarn link"
   },
