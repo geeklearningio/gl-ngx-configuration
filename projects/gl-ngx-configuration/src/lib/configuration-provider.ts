@@ -3,7 +3,6 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class ConfigurationProvider<T> {
-
   private mergedConfiguration: T = <T>{};
 
   /**
@@ -11,7 +10,10 @@ export class ConfigurationProvider<T> {
    * @param environment if environment is provided and a deployUrl settings is set it will use it.
    */
   loadDefault(environment?: any): Promise<boolean> {
-    const url = environment && environment.deployUrl ? environment.deployUrl + 'configuration.json' : 'configuration.json';
+    const url =
+      environment && environment.deployUrl
+        ? environment.deployUrl + 'configuration.json'
+        : 'configuration.json';
 
     return new Promise((resolve, reject) => {
       const xobj = new XMLHttpRequest();
@@ -71,7 +73,9 @@ export class ConfigurationProvider<T> {
         this._merge(result);
         return true;
       }
-      console.log('Object was undefined and could not be merged to the configuration');
+      console.log(
+        'Object was undefined and could not be merged to the configuration'
+      );
       return false;
     });
   }
